@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block people_active %}active{% endblock %}
+{% block body %}
+
+        <div class="container">
+                {% for people in popular_people %}
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <a href="/people/{{ people.id }}/">
+                                <img width="224" height="336" src="http://image.tmdb.org/t/p/w500{{ people.profile_path }}">
+                                <center><h4><b>{{ people.name }}</b></h4></center></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+{% endblock %}

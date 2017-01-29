@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block movies_active %}active{% endblock %}
+{% block body %}
+
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <center><h2><b>Videos</b></h2></center>
+                    </div>
+                    {% for type in types %}
+                        <div class="col-md-12">
+                            <h3>{{ type }}(s)</h3>
+                        </div>
+                        {% for video in videos %}
+                            {% ifequal video.type type %}
+                                <div class="col-md-12">
+                                    <center><h4><b>{{ video.name }}</b></h4></center>
+                                </div>
+                                <div class="col-md-12">
+                                    <center><iframe allowfullscreen="allowfullscreen"
+                                                                        mozallowfullscreen="mozallowfullscreen"
+                                                                        msallowfullscreen="msallowfullscreen"
+                                                                        oallowfullscreen="oallowfullscreen"
+                                                                        webkitallowfullscreen="webkitallowfullscreen"
+                                                                        width="600" height="338" src="http://www.youtube.com/embed/{{ video.key }}"
+                                                                        frameborder="0"></iframe></center>
+                                </div>
+                            {% endifequal %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block movies_active %}active{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <!-- Popular movies -->
+        <span class="sort-movies"><center><h3><a href="{% url 'movies:popular_movies' %}">Popular movies</a></h3></center></span>
+        <div class="row">
+            <div class="panel panel-default">
+             <div class="panel-body">
+            {% for movie in popular_movies %}
+                <div class="col-md-2">
+                            <a class="title movie" href="/movies/{{ movie.id }}/">
+                                <img width="162" height="243" src="http://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></a>
+                            <a class="title movie" href="/movies/{{ movie.id }}/">{{ movie.title }}</a><br>
+                            <div class="info">
+                                <span class="rate">{{ movie.vote_average }}&nbsp;</span><i class="material-icons md-18">star_rate</i>&nbsp;
+                                <span class="release-date">{{ movie.release_date }}&nbsp;</span><i class="material-icons md-18">date_range</i>
+                            </div>
+                </div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+
+        <!-- Top rated movies -->
+        <span class="sort-movies"><center><h3><a href="{% url 'movies:top_rated_movies' %}">Top rated movies</a></h3></center></span>
+        <div class="row">
+            <div class="panel panel-default">
+             <div class="panel-body">
+            {% for movie in top_rated_movies %}
+                <div class="col-md-2">
+                            <a class="title movie" href="/movies/{{ movie.id }}/">
+                                <img width="162" height="243" src="http://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></a>
+                            <a class="title movie" href="/movies/{{ movie.id }}/">{{ movie.title }}</a><br>
+                            <div class="info">
+                                <span class="rate">{{ movie.vote_average }}&nbsp;</span><i class="material-icons md-18">star_rate</i>&nbsp;
+                                <span class="release-date">{{ movie.release_date }}&nbsp;</span><i class="material-icons md-18">date_range</i>
+                            </div>
+                </div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+
+        <!-- Top now playing -->
+        <span class="sort-movies"><center><h3><a href="{% url 'movies:now_playing_movies' %}">Now playing movies</a></h3></center></span>
+        <div class="row">
+            <div class="panel panel-default">
+             <div class="panel-body">
+            {% for movie in now_playing_movies %}
+                <div class="col-md-2">
+                            <a class="title movie" href="/movies/{{ movie.id }}/">
+                                <img width="162" height="243" src="http://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></a>
+                            <a class="title movie" href="/movies/{{ movie.id }}/">{{ movie.title }}</a><br>
+                            <div class="info">
+                                <span class="rate">{{ movie.vote_average }}&nbsp;</span><i class="material-icons md-18">star_rate</i>&nbsp;
+                                <span class="release-date">{{ movie.release_date }}&nbsp;</span><i class="material-icons md-18">date_range</i>
+                            </div>
+                </div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+
+        <!-- Upcoming -->
+        <span class="sort-movies"><center><h3><a href="{% url 'movies:upcoming_movies' %}">Upcoming movies</a></h3></center></span>
+        <div class="row">
+            <div class="panel panel-default">
+             <div class="panel-body">
+            {% for movie in upcoming_movies %}
+                <div class="col-md-2">
+                            <a class="title movie" href="/movies/{{ movie.id }}/">
+                                <img width="162" height="243" src="http://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></a>
+                            <a class="title movie" href="/movies/{{ movie.id }}/">{{ movie.title }}</a><br>
+                            <div class="info">
+                                <span class="release-date">{{ movie.release_date }}&nbsp;</span><i class="material-icons md-18">date_range</i>
+                            </div>
+                </div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+body {
+    background: white url("images/background.png");
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+    font-size: 24px;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+p {
+    font-size: 110%;
+}
+
+.material-icons, .icon-text {
+      vertical-align: middle;
+}

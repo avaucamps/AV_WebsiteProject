@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block movies_active %}active{% endblock %}
+{% block body %}
+    <div class="container">
+
+        {% for movie in now_playing_movies %}
+            <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <a href="/movies/{{ movie.id }}/"><img width="141" height="212" src="http://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></a>
+                    </div>
+                    <div class="col-md-8">
+                        <a href="/movies/{{ movie.id }}/"><h4><b>{{ movie.title }}</b></h4></a>
+                        <span class="rate">{{ movie.vote_average }}</span>
+                        <span><i class="material-icons md-18">star_rate</i></span>
+                        <span class="release-date">{{ movie.release_date }}</span>
+                        <span><i class="material-icons md-18">date_range</i></span><br><br>
+                        <p>{{ movie.overview }}</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

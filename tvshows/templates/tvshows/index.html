@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block tvshows_active %}active{% endblock %}
+{% block body %}
+
+        <div class="container">
+
+        <!-- Popular movies -->
+        <span class="sort_tvshows"><center><h3><a href="{% url 'tvshows:popular' %}">Popular TV shows</a></h3></center></span>
+        <div class="row">
+            <div class="panel panel-default">
+             <div class="panel-body">
+            {% for tvshow in popular %}
+                <div class="col-md-2">
+                            <a class="title movie" href="/tvshows/{{ tvshow.id }}/">
+                                <img width="162" height="243" src="http://image.tmdb.org/t/p/w500{{ tvshow.poster_path }}"></a>
+                            <a class="title tvshow" href="/tvshows/{{ tvshow.id }}/">{{ tvshow.name }}</a><br>
+                            <div class="info">
+                                <span class="rate">{{ tvshow.vote_average }}&nbsp;</span><i class="material-icons md-18">star_rate</i>&nbsp;
+                                <span class="release-date">{{ tvshow.first_air_date }}&nbsp;</span><i class="material-icons md-18">date_range</i>
+                            </div>
+                </div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+
+        <!-- Top rated movies -->
+        <span class="sort_tvshows"><center><h3><a href="{% url 'tvshows:top_rated' %}">Top rated TV shows</a></h3></center></span>
+        <div class="row">
+            <div class="panel panel-default">
+             <div class="panel-body">
+            {% for tvshow in top_rated %}
+                <div class="col-md-2">
+                            <a class="title movie" href="/tvshows/{{ tvshow.id }}/">
+                                <img width="162" height="243" src="http://image.tmdb.org/t/p/w500{{ tvshow.poster_path }}"></a>
+                            <a class="title tvshow" href="/tvshows/{{ tvshow.id }}/">{{ tvshow.name }}</a><br>
+                            <div class="info">
+                                <span class="rate">{{ tvshow.vote_average }}&nbsp;</span><i class="material-icons md-18">star_rate</i>&nbsp;
+                                <span class="release-date">{{ tvshow.first_air_date }}&nbsp;</span><i class="material-icons md-18">date_range</i>
+                            </div>
+                </div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+
+        <!-- Top on_the_air -->
+        <span class="sort_tvshows"><center><h3><a href="{% url 'tvshows:on_the_air' %}">On the air TV shows</a></h3></center></span>
+        <div class="row">
+            <div class="panel panel-default">
+             <div class="panel-body">
+            {% for tvshow in on_the_air %}
+                <div class="col-md-2">
+                            <a class="title movie" href="/tvshows/{{ tvshow.id }}/">
+                                <img width="162" height="243" src="http://image.tmdb.org/t/p/w500{{ tvshow.poster_path }}"></a>
+                            <a class="title tvshow" href="/tvshows/{{ tvshow.id }}/">{{ tvshow.name }}</a><br>
+                            <div class="info">
+                                <span class="rate">{{ tvshow.vote_average }}&nbsp;</span><i class="material-icons md-18">star_rate</i>&nbsp;
+                                <span class="release-date">{{ tvshow.first_air_date }}&nbsp;</span><i class="material-icons md-18">date_range</i>
+                            </div>
+                </div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+
+        <!-- Airing today -->
+        <span class="sort_tvshows"><center><h3><a href="{% url 'tvshows:airing_today' %}">Airing today TV shows</a></h3></center></span>
+        <div class="row">
+            <div class="panel panel-default">
+             <div class="panel-body">
+            {% for tvshow in airing_today %}
+                <div class="col-md-2">
+                            <a class="title movie" href="/tvshows/{{ tvshow.id }}/">
+                                <img width="162" height="243" src="http://image.tmdb.org/t/p/w500{{ tvshow.poster_path }}"></a>
+                            <a class="title tvshow" href="/tvshows/{{ tvshow.id }}/">{{ tvshow.name }}</a><br>
+                            <div class="info">
+                                <span class="rate">{{ tvshow.vote_average }}&nbsp;</span><i class="material-icons md-18">star_rate</i>&nbsp;
+                                <span class="release-date">{{ tvshow.first_air_date }}&nbsp;</span><i class="material-icons md-18">date_range</i>
+                            </div>
+                </div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

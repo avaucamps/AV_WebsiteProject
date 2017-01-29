@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block movies_active %}active{% endblock %}
+{% block body %}
+
+        <div class="container">
+            <h3><b>Search results : </b></h3>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><b>Movies</b></h3>
+                    {% for movie in search %}
+                        {% ifequal movie.media_type 'movie' %}
+                                {% ifequal movie.poster_path None %}
+                                {% else %}
+                                    <div class="col-md-2">
+                                        <a class="title movie" href="/movies/{{ movie.id }}/">
+                                        <img width="163" height="250" src="http://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></a>
+                                        <a class="title movie" href="/movies/{{ movie.id }}/">{{ movie.title }}</a><br>
+                                        <div class="info">
+                                            <span class="rate">{{ movie.vote_average }}</span>
+                                            <span><i class="material-icons md-18">star_rate</i></span>
+                                            <span style="color:darkgrey" class="release-date">{{ movie.release_date }}</span>
+                                            <span style="color:darkgrey"><i class="material-icons md-18">date_range</i></span>
+                                        </div>
+                                    </div>
+                                {% endifequal %}
+                        {% endifequal %}
+                    {% endfor %}
+                    {% for movie in search %}
+                        {% ifequal movie.media_type 'movie' %}
+                                {% ifequal movie.poster_path None %}
+                                    <div class="col-md-2">
+                                        <a class="title movie" href="/movies/{{ movie.id }}/">{{ movie.title }}</a><br>
+                                    </div>
+                                {% endifequal %}
+
+                        {% endifequal %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><b>TV Shows</b></h3>
+                    {% for tvshow in search %}
+                        {% ifequal tvshow.media_type 'tv' %}
+                            {% ifequal tvshow.poster_path None %}
+                            {% else %}
+                                <div class="col-md-2">
+                                    <a class="title movie" href="/tvshows/{{ tvshow.id }}/">
+                                        <img width="163" height="250" src="http://image.tmdb.org/t/p/w500{{ tvshow.poster_path }}"></a>
+                                    <a class="title tvshow" href="/tvshows/{{ tvshow.id }}/">{{ tvshow.name }}</a><br>
+                                    <div class="info">
+                                        <span class="rate">{{ tvshow.vote_average }}</span>
+                                        <span><i class="material-icons md-18">star_rate</i></span>
+                                        <span style="color:darkgrey" class="release-date">{{ tvshow.first_air_date }}</span>
+                                        <span style="color:darkgrey"><i class="material-icons md-18">date_range</i></span>
+                                    </div>
+                                </div>
+                            {% endifequal %}
+                        {% endifequal %}
+                    {% endfor %}
+                    {% for tvshow in search %}
+                        {% ifequal tvshow.media_type 'tv' %}
+                            {% ifequal tvshow.poster_path None %}
+                                <div class="col-md-2">
+                                    <a class="title tvshow" href="/tvshows/{{ tvshow.id }}/">{{ tvshow.name }}</a><br>
+                                </div>
+                            {% endifequal %}
+                        {% endifequal %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><b>People</b></h3>
+                    {% for people in search %}
+                        {% ifequal people.media_type 'person' %}
+                            {% ifequal people.profile_path None %}
+                            {% else %}
+                                <div class="col-md-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <a href="/people/{{ people.id }}/">
+                                            <img width="163" height="250" src="http://image.tmdb.org/t/p/w500{{ people.profile_path }}">
+                                            <p>{{ people.name }}</p></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endifequal %}
+                        {% endifequal %}
+                    {% endfor %}
+                    {% for people in search %}
+                        {% ifequal people.media_type 'person' %}
+                            {% ifequal people.profile_path None %}
+                                <div class="col-md-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <a href="/people/{{ people.id }}/">
+                                            <p>{{ people.name }}</p></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endifequal %}
+                        {% endifequal %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}

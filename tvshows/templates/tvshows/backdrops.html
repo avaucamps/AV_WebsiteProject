@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block tvshows_active %}active{% endblock %}
+{% block body %}
+
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <center><h2><b>Backdrops</b></h2></center>
+                    </div>
+                    {% for backdrop in backdrops %}
+                        <div class="col-md-12">
+                            <center><a href="http://image.tmdb.org/t/p/original{{ backdrop.file_path }}" target="_blank">
+                                <img class="img-responsive" src="http://image.tmdb.org/t/p/w650{{ backdrop.file_path }}">
+                            </a></center><br>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}

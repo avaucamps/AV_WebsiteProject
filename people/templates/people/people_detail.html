@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block people_active %}active{% endblock %}
+{% block body %}
+
+        <div class="container">
+            <div class="row">
+                        <div class="col-md-3">
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                                <center><img class="img-responsive" src="http://image.tmdb.org/t/p/w500{{ people.profile_path }}"></center>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-md-9">
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                                <div class="col-md-12">
+                                                      <h3><b>{{ people.name }}</b></h3>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <span><h4><b>Born : </b>{{ people.birthday }}</h4></span>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <span><h4><b>Place of birth : </b>{{ people.place_of_birth }}</h4></span>
+                                                </div>
+                                                {% if people.deathday == '' %}
+                                                {% else %}
+                                                    <div class="col-md-12">
+                                                        <h4><b>Death : </b>{{ people.deathday }}</h4>
+                                                    </div>
+                                                {% endif %}
+                                                <div class="col-md-12">
+                                                    {% ifequal people.gender 1 %}
+                                                        <h4><b>Gender : </b>Female</h4>
+                                                    {% else %}
+                                                        <h4><b>Gender : </b>Male</h4>
+                                                    {% endifequal %}
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <h3><b>Biography : </b></h3>
+                                        <p>{{ people.biography }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <center><h3><b>Movies</b></h3></center>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {% if movie_credits_cast %}
+                                            <h4><b>Cast</b></h4><br>
+                                            {% for movie in movie_credits_cast %}
+                                                <p>{{ movie.release_date }}&nbsp; - &nbsp;
+                                                    <a href="/movies/{{ movie.id }}/">{{ movie.title }}</a></p><hr>
+                                            {% endfor %}
+                                        {% endif %}
+                                        {% if movie_credits_crew %}
+                                            <h4><b>Crew</b></h4><br>
+                                            {% for movie in movie_credits_crew %}
+                                                <p>{{ movie.release_date }}&nbsp; - &nbsp;
+                                                    <a href="/movies/{{ movie.id }}/">{{ movie.title }}</a> as
+                                                    {{ movie.job }}</p><hr>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <center><h3><b>TV shows</b></h3></center>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {% if tv_credits_cast %}
+                                            <h4><b>Cast</b></h4><br>
+                                                {% for tv_show in tv_credits_cast %}
+                                                        <p>{{tv_show.first_air_date }}&nbsp; - &nbsp;
+                                                            <a href="/tvshows/{{ tv_show.id }}/">{{ tv_show.name }}</a></p><hr>
+                                                {% endfor %}
+                                        {% endif %}
+                                        {% if tv_credits_crew %}
+                                            <h4><b>Crew</b></h4><br>
+                                                {% for tv_show in tv_credits_crew %}
+                                                        <p>{{tv_show.first_air_date }}&nbsp; - &nbsp;
+                                                            <a href="/tvshows/{{ tv_show.id }}/">{{ tv_show.name }}</a> as
+                                                            {{ tv_show.job }}</p><hr>
+                                                {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <h3><b>Photos : </b></h3>
+                                            {% for image in images %}
+                                                <div class="col-md-2">
+                                                    <a href="http://image.tmdb.org/t/p/original{{ image.file_path }}" target="_blank">
+                                                    <img width="163" height="250" src="http://image.tmdb.org/t/p/w500{{ image.file_path }}"></a>
+                                                    <br><br>
+                                                </div>
+                                            {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+        </div>
+
+{% endblock %}

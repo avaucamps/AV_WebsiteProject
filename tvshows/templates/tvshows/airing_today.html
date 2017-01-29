@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block tvshows_active %}active{% endblock %}
+{% block body %}
+    <div class="container">
+
+        {% for tv_show in airing_today %}
+            <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <a href="/tvshows/{{ tv_show.id }}/"><img width="141" height="212" src="http://image.tmdb.org/t/p/w500{{ tv_show.poster_path }}"></a>
+                    </div>
+                    <div class="col-md-8">
+                        <a href="/tvshows/{{ tv_show.id }}/"><h4><b>{{ tv_show.name }}</b></h4></a>
+                        <span class="rate">{{ tv_show.vote_average }}</span>
+                        <span><i class="material-icons md-18">star_rate</i></span>
+                        <span class="release-date">{{ tv_show.first_air_date }}</span>
+                        <span><i class="material-icons md-18">date_range</i></span><br><br>
+                        <p>{{ tv_show.overview }}</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

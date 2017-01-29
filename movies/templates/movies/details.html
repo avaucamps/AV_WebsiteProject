@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block movies_active %}active{% endblock %}
+{% block body %}
+
+        <div class="container">
+                <div class="row">
+                        <div class="col-md-3">
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                                <center><img class="img-responsive" src="http://image.tmdb.org/t/p/w500{{ movie_information.poster }}"></center>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-md-9">
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                                <div class="col-md-12">
+                                                      <h3><b>{{ movie_information.title }}</b></h3>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <span><h5><b>Director(s) : </b>
+                                                            {% for member in crew %}
+                                                                <a href="/people/{{member.id}}/">
+                                                                {{ member.name }} -</a>
+                                                            {% endfor %}
+                                                            </h5></span>
+                                                </div>
+                                                <div class="col-md-4">
+                                                        <span style="color:darkgrey"><h4>{{ movie_information.genres }}</h4></span>
+                                                </div>
+                                                <div  id="align" class="col-md-4">
+                                                        <center><span style="color:darkgrey" class="time">
+                                                                {% if movie_information.runtime != '0h00' %}
+                                                                        <h4><i class="material-icons">access_time</i>
+                                                                        &nbsp;{{ movie_information.runtime }}</h4></span></center>
+                                                                {% endif %}
+                                                </div>
+                                                <div class="col-md-4">
+                                                        <span class="pull-right" style="color:darkgrey">
+                                                                <span class="date"><h4><i class="material-icons">date_range</i>&nbsp;
+                                                                                {{ movie_information.release_date }}</h4></span>
+                                                        </span>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="col-md-9">
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                                <div class="col-md-9">
+                                                     <h3><b>Overview</b></h3>
+                                                </div>
+                                                <div class="col-md-12">
+                                                     <p>{{ movie_information.overview }}</p>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="col-md-12">
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                                <div class="col-md-12">
+                                                        <a href="/movies/{{ movie_information.id }}/castncrew/"><h3><b>Cast & Crew</b></h3></a>
+                                                </div>
+                                                {% for member in cast %}
+                                                        <div class="col-md-2">
+                                                                 <a href="/people/{{member.id}}/">
+                                                                 <center><img src="http://image.tmdb.org/t/p/w500{{ member.profile_path }}"
+                                                                              width="156" height="234">
+                                                                 <h5><b>{{member.name}}</b></h5></a>
+                                                                 <h5>{{member.character}}</h5></center>
+                                                        </div>
+                                                {% endfor %}
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="col-md-12">
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                                <div class="col-md-12">
+                                                      <div class="col-md-8">
+                                                            <a href="/movies/{{ movie_information.id }}/videos/"><h3><b>Videos</b></h3></a>
+                                                      </div>
+                                                      <div class="col-md-2">
+                                                              <a href="/movies/{{ movie_information.id }}/backdrops/"><h3><b>Backdrops</b></h3></a>
+                                                      </div>
+                                                      <div class="col-md-2">
+                                                              <a href="/movies/{{ movie_information.id }}/posters/"><h3><b>Posters</b></h3></a>
+                                                      </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                        <div class="col-md-8">
+                                                                {% if video_key %}
+                                                                        <iframe allowfullscreen="allowfullscreen"
+                                                                                mozallowfullscreen="mozallowfullscreen"
+                                                                                msallowfullscreen="msallowfullscreen"
+                                                                                oallowfullscreen="oallowfullscreen"
+                                                                                webkitallowfullscreen="webkitallowfullscreen"
+                                                                                width="600" height="338" src="http://www.youtube.com/embed/{{ video_key }}"
+                                                                                frameborder="0"></iframe>
+                                                                {% endif %}
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                                {% for backdrop in backdrops %}
+                                                                    <img class="img-responsive" src="http://image.tmdb.org/t/p/w500{{ backdrop.file_path }}"><br>
+                                                                {% endfor %}
+                                                        </div>
+                                                        <div id="posters" class="col-md-2">
+                                                                <br><img class="img-responsive" src="http://image.tmdb.org/t/p/w500{{ movie_information.poster }}">
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block tvshows_active %}active{% endblock %}
+{% block body %}
+
+    <div class="container">
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <center><h2><b>Cast</b></h2></center>
+                    </div>
+                    {% for member in cast %}
+                            <div class="col-md-3">
+                                <a href="/people/{{member.id}}/">
+                                <img src="http://image.tmdb.org/t/p/w500{{ member.profile_path }}"
+                                width="241" height="360">
+                                <b>{{ member.name }}</b></a><br>
+                                <span style="color:darkgrey">{{ member.character }}</span></h4><br><br>
+                            </div>
+                    {% endfor %}
+                    <div class="col-md-12">
+                    </div>
+                    {% for member in castNoPicture %}
+                            <div class="col-md-3">
+                                <a href="/people/{{member.id}}/"><><b>{{ member.name }}</b></a><br><span style="color:darkgrey">{{ member.character }}</span></h4><br>
+                            </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <center><h2><b>Crew</b></h2></center>
+                    </div>
+                    {% for department in departments %}
+                        <div class="col-md-12">
+                                <h3>{{ department }}</h3>
+                                {% for member in crew %}
+                                    {% ifequal member.department department %}
+                                        <div class="col-md-3">
+                                            <h4><b><a href="/people/{{member.id}}/">{{ member.name }}</a></b>
+                                                <br><span style="color:darkgrey">{{ member.job }}</span></h4><br>
+                                        </div>
+                                    {% endifequal %}
+                                {% endfor %}
+                         </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

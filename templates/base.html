@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} TVWatcher {% endblock%}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'movies/style.css' %}"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy|Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!----------------------------------- Navigation bar ----------------------------------->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'movies:index' %}">TVWatcher</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="{% block movies_active %}{% endblock %}"><a href="{% url 'movies:index' %}"><i class="material-icons">movie</i>&nbsp; Movies</a></li>
+                <li class="{% block tvshows_active %}{% endblock %}"><a href="{% url 'tvshows:index' %}"><i class="material-icons">tv</i>&nbsp; TV Shows</a></li>
+                <li class="{% block people_active %}{% endblock %}"><a href="{% url 'people:index' %}"><i class="material-icons">star</i>&nbsp; People</a></li>
+            </ul>
+            <form class="navbar-form navbar-nav" role="search" method="get" action="{% url 'search:search' %}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="material-icons md-18">search</i></button>
+            </form>
+        </div>
+
+    </div>
+</nav>
+<!--------------------------------------- Body ----------------------------------------->
+{% block body %}
+{% endblock %}
+</body>
+</html>

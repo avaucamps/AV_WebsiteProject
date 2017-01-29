@@ -1,0 +1,69 @@
+body {
+    background: white url("images/background.png");
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+    font-size: 24px;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.material-icons, .icon-text {
+      vertical-align: middle;
+}
+
+.news{
+    font-family: 'Satisfy', cursive;
+}
+
+.btn_group {
+    background-color: #555555;
+}
+
+.well{
+    background-color: rgb(255, 255, 255);
+}
+
+.well img{
+    float: left;
+}
+
+.panel {
+    border: none;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.sort-movies {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+
+.material-icons.md-18, .release-date{
+    vertical-align: middle;
+}
+
+.material-icons.md-18, .rate{
+    vertical-align: middle;
+}
+
+.material-icons, .time {
+    vertical-align: middle;
+}
+
+.material-icons, .date {
+    vertical-align: middle;
+}
+
+#posters {
+    top: 8px;
+}

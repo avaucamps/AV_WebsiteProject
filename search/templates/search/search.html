@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block body %}
+
+        <div class="container">
+            <h3><b>Search results : </b></h3>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><b>Movies</b></h3>
+                    {% for movie in search %}
+                        {% ifequal movie.media_type 'movie' %}
+                                    <div class="col-md-2">
+                                        <a class="title movie" href="/movies/{{ movie.id }}/">
+                                        <img width="163" height="250" src="http://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></a>
+                                        <a class="title movie" href="/movies/{{ movie.id }}/">{{ movie.title }}</a><br>
+                                        <div class="info">
+                                            {% if movie.vote_average %}
+                                                <span class="rate">{{ movie.vote_average }}&nbsp;</span>
+                                                <i class="material-icons md-18">star_rate</i>&nbsp;
+                                            {% endif %}
+                                            {% if movie.release_date %}
+                                                <span class="release-date">{{ movie.release_date }}&nbsp;</span>
+                                                <i class="material-icons md-18">date_range</i>
+                                            {% endif %}
+                                        </div>
+                                        <br>
+                                    </div>
+                        {% endifequal %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><b>TV Shows</b></h3>
+                    {% for tvshow in search %}
+                        {% ifequal tvshow.media_type 'tv' %}
+                                <div class="col-md-2">
+                                    <a class="title movie" href="/tvshows/{{ tvshow.id }}/">
+                                        <img width="163" height="250" src="http://image.tmdb.org/t/p/w500{{ tvshow.poster_path }}"></a>
+                                    <a class="title tvshow" href="/tvshows/{{ tvshow.id }}/">{{ tvshow.name }}</a><br>
+                                    <div class="info">
+                                        {% if tvshow.vote_average %}
+                                            <span class="release-date">{{ tvshow.first_air_date }}&nbsp;</span>
+                                            <i class="material-icons md-18">date_range</i>
+                                        {% endif %}
+                                        {% if tvshow.first_air_date %}
+                                            <span class="rate">{{ tvshow.vote_average }}&nbsp;</span>
+                                            <i class="material-icons md-18">star_rate</i>&nbsp;
+                                        {% endif %}
+                                    </div>
+                                    <br>
+                                </div>
+                        {% endifequal %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><b>People</b></h3>
+                    {% for people in search %}
+                        {% ifequal people.media_type 'person' %}
+                                <div class="col-md-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <a href="/people/{{ people.id }}/">
+                                            <img width="163" height="250" src="http://image.tmdb.org/t/p/w500{{ people.profile_path }}">
+                                            <p>{{ people.name }}</p></a>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endifequal %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
